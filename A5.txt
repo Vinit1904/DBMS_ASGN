@@ -76,4 +76,4 @@ mysql> Select * from Orders where NOT ((odate = '1990-10-03' OR snum>1006) AND a
 
 
 6) What is a simpler way to write this query?
-Select snum, sname, city, comm From Salespeople where (comm > .12 OR comm <.14);
+--->Select snum, sname, city, comm From Salespeople where comm in( 0.12,0.14);
