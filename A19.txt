@@ -1,0 +1,49 @@
+----------------------------------ASSINGMENT-19-------------------------
+
+
+====================================================================================
+
+
+
+#1) Create a view that shows all of the customers who have the highest ratings
+
+create view Highest_rating as
+select cnum,
+Cname as Highest_Rating from customers 
+where rating=(select max(rating) from customers);
+
+
+
+
+#2) Create a view that shows the number of salespeople in each city.
+
+create view salespeople_number as
+select city,count(snum) as 'Number_of_Salespeople' from salespeople group by city; 
+
+
+
+
+#3) Create a view that shows the average and total orders for each salesperson
+# after his or her name. Assume all names are unique.
+
+create view Salesperson_summary as
+select sname as 'Name',avg(amt) as Average_orders_amt,count(onum) Total_orders 
+from orders,salespeople where orders.Snum=salespeople.Snum group by orders.snum;
+
+select * FROM Salesperson_summary;
+
+
+
+
+
+
+#4) Create a view that shows each salesperson with multiple customers
+
+Create view Multiple_customers AS
+SELECT salespeople.SNUM,SNAME,count(CNUM) 'ORDERS' FROM customers,salespeople
+ where salespeople.Snum=customers.SNUM group by customers.SNUM HAVING COUNT(CNUM)>1;
+
+
+Select Salespeople.Sname, Customers.Cnum from Customers, Salespeople
+ where Salespeople.Snum = Customers.Snum group by Customers.Cnum;
+ 
