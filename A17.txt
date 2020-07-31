@@ -1,0 +1,46 @@
+-----------------------------------------Assingment-17-----------------------------------------------------
+
+
+	==================================================================================================================
+
+
+
+
+#1) Create the Orders table so that all onum values as well as all combinations of cnum and snum are different from one another, and
+# so that NULL values are excluded from the date field.
+
+CREATE TABLE orders_17 ( 
+onum INT(4) primary key,
+cnum int(4), 
+snum varchar(4), 
+odate date NOT NULL,
+constraint u_orders_17_cnum_snum unique(cnum,snum)
+ );
+ desc orders_17;
+
+
+
+
+#2)Create the Salespeople table so that the default commission is 10% with no NULLS permitted,
+#  snum is the primary key, and all names fall alphabetically between A and M, inclusive (assume all names will be uppercase).
+CREATE TABLE salespeople_17 ( 
+
+comm int(4)  not null DEFAULT 0.1, 
+snum int(4) PRIMARY KEY, 
+sname varchar(10) check(substr(upper(sname),1,1) BETWEEN 'A' AND 'M')
+ );
+
+
+
+
+#se).
+# 3) Create the Orders table, making sure that the onum is greater than the cnum, and the cnum is greater that the snum. 
+#   Allow no NULLS in any of these three fields.
+CREATE TABLE orders_17copy (
+onum int(4), 
+amt float(7,2), 
+odate date,
+cnum int(4), 
+snum int(4), 
+CONSTRAINT orders_cnum_snum check(cnum>cnum AND cnum>snum) );
+
